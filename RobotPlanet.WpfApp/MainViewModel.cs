@@ -16,7 +16,16 @@ namespace RobotPlanet.WpfApp
             new RobotGroup<RepairBot>(
                 "RepairBot", name => new RepairBot(name, 100)),
             new RobotGroup<GuardBot>(
-                "GuardBot", name => new GuardBot(name, 100))
+                "GuardBot", name => new GuardBot(name, 100)),
+
+            new RobotGroup<FireBot>(
+                "FireBot", name => new FireBot(name)),
+
+            new RobotGroup<MusicBot>(
+                "MusicBot", name => new MusicBot(name)),
+
+            new RobotGroup<GardenBot>(
+                "GardenBot", name => new GardenBot(name))
         };
 
         public ObservableCollection<Robot> Robots { get; } = new();
@@ -133,6 +142,14 @@ namespace RobotPlanet.WpfApp
                 group.LogAdded += OnLogAdded;
                 group.Changed += OnGroupChanged;
             }
+            Groups.OfType<RobotGroup<FireBot>>()
+                .First().Add("Fire 1");
+
+            Groups.OfType<RobotGroup<MusicBot>>()
+                .First().Add("Music 1");
+
+            Groups.OfType<RobotGroup<GardenBot>>()
+                .First().Add("Garden 1");
 
             SelectedGroup = Groups.FirstOrDefault();
         }
